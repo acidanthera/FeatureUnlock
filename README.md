@@ -29,6 +29,6 @@ iPad4,x - iPad6,x
 #### Credits
 
 - [Apple](https://www.apple.com) for macOS  
-- [vit9696](https://github.com/vit9696) for [Lilu.kext](https://github.com/vit9696/Lilu) and great help in implementing some features
+- [vit9696](https://github.com/vit9696) for [Lilu.kext](https://github.com/vit9696/Lilu)
 - [Osy](https://github.com/Osy/Polaris22Fixup/) and [DhinakG](https://github.com/dhinakg/Polaris22Fixup/) for Polaris22Fixup base
 - [Ben-z](https://github.com/ben-z/free-sidecar) for original patch SidecarCore patch set
