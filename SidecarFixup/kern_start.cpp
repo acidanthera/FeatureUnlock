@@ -31,7 +31,6 @@ static_assert(sizeof(kMacModelOriginal) == sizeof(kMacModelPatched), "patch size
 static_assert(sizeof(kIPadModelOriginal) == sizeof(kIPadModelPatched), "patch size invalid");
 
 static const char *dyldSharedPath;
-static const char *kSidecarCorePath = "/System/Library/PrivateFrameworks/SidecarCore.framework/Versions/A/SidecarCore";
 
 static mach_vm_address_t orig_cs_validate {};
 
@@ -43,8 +42,7 @@ static inline void searchAndPatch(const void *haystack,
                                   const char *path,
                                   const uint8_t (&needle)[patchSize],
                                   const uint8_t (&patch)[patchSize]) {
-    if (UNLIKELY(strcmp(path, dyldSharedPath) == 0) ||
-		UNLIKELY(strcmp(path, kSidecarCorePath) == 0) /* FIXME: is that needed? */) {
+    if (UNLIKELY(strcmp(path, dyldSharedPath) == 0)) {
         if (UNLIKELY(KernelPatcher::findAndReplace(const_cast<void *>(haystack), haystackSize, needle, patchSize, patch, patchSize))) {
             DBGLOG(MODULE_SHORT, "found function to patch at %s!", path);
         }
