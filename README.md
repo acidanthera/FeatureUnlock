@@ -1,6 +1,8 @@
 SidecarFixup
 ==============
 
+[![Build Status](https://github.com/acidanthera/SidecarFixup/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/SidecarFixup/actions) [![Scan Status](https://scan.coverity.com/projects/23155/badge.svg?flat=1)](https://scan.coverity.com/projects/23155)
+
 [Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling Sidecar support on the following SMBIOS:
 
 ```
@@ -22,9 +24,9 @@ iPad4,x - iPad6,x
 
 #### Boot arguments
 
-- `-sidecaroff` (or `-liluoff`) to disable
-- `-sidecardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
-- `-sidecarbeta` (or `-lilubetaall`) to enable on macOS newer than 11
+- `-caroff` (or `-liluoff`) to disable
+- `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
+- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 11
 
 #### Credits
 
