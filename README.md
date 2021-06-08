@@ -26,7 +26,7 @@ iPad4,x - iPad6,x
 
 - `-caroff` (or `-liluoff`) to disable
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
-- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 11
+- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 12
 
 #### Credits
 
