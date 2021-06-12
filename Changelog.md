@@ -2,6 +2,7 @@ SidecarFixup Changelog
 ======================
 #### v1.0.2
 - Added constants for macOS 12 support
+- Fixed macOS 12 shared cache compatibility
 
 #### v1.0.1
 - Fixed excessive memory comparison
