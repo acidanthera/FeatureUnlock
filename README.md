@@ -3,7 +3,7 @@ SidecarFixup
 
 [![Build Status](https://github.com/acidanthera/SidecarFixup/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/SidecarFixup/actions) [![Scan Status](https://scan.coverity.com/projects/23155/badge.svg?flat=1)](https://scan.coverity.com/projects/23155)
 
-[Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling Sidecar support on the following SMBIOS:
+[Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling [Sidecar](https://support.apple.com/en-ca/HT210380) and [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/) support on the following SMBIOS:
 
 ```
 iMac13,x - iMac16,x
@@ -14,13 +14,15 @@ Macmini6,x - Macmini7,1
 MacPro5,1 - MacPro6,1
 ```
 
-Additionally whitelists the following iPad Models:
+Additionally whitelists the following iPad Models for Sidecar:
 
 ```
 iPad4,x - iPad6,x
 ```
 
-**Note**: Requires a machine with an Intel iGPU enabled and active, dGPU-only machines will not work.
+**Note**: Sidecar requires a machine with an Intel iGPU enabled and active, dGPU-only machines will not work. H.265 capable iGPU recommended for best streaming quality
+
+* AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. However requires macOS 12, Monterey or newer to use
 
 #### Boot arguments
 
