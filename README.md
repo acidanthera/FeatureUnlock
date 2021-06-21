@@ -5,13 +5,22 @@ SidecarFixup
 
 [Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling [Sidecar](https://support.apple.com/en-ca/HT210380) and [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/) support on the following SMBIOS:
 
-```
-iMac13,x - iMac16,x
+```sh
+# Sidecar Unlock
 MacBook8,1
 MacBookAir5,x - MacBookAir7,x
 MacBookPro9,x - MacBookPro12,x
-Macmini6,x - Macmini7,1
-MacPro5,1 - MacPro6,1
+iMac13,x      - iMac16,x
+Macmini6,x.   - Macmini7,1
+MacPro5,1     - MacPro6,1
+
+# AirPlay to Mac Unlock
+MacBook8,1
+iMac13,x      - iMac18,x
+MacBookAir5,x - MacBookAir7,x
+MacBookPro9,x - MacBookPro14,x
+Macmini6,x    - Macmini8,1
+MacPro5,1     - MacPro6,1
 ```
 
 Additionally whitelists the following iPad Models for Sidecar:
