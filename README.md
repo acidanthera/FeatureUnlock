@@ -3,7 +3,7 @@ SidecarFixup
 
 [![Build Status](https://github.com/acidanthera/SidecarFixup/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/SidecarFixup/actions) [![Scan Status](https://scan.coverity.com/projects/23155/badge.svg?flat=1)](https://scan.coverity.com/projects/23155)
 
-[Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling [Sidecar](https://support.apple.com/en-ca/HT210380), [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac) , [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/) and [Universal Control](https://www.apple.com/macos/monterey-preview/) support on the following SMBIOS:
+[Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling [Sidecar](https://support.apple.com/en-ca/HT210380), [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac), [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/) and [Universal Control](https://www.apple.com/macos/monterey-preview/) support on the following SMBIOS:
 
 ```sh
 # Sidecar and Universal Control Unlock
@@ -24,12 +24,12 @@ MacPro5,1     - MacPro6,1
 iMac13,x      - iMac18,x
 
 # NightShift Unlock
-MacBook7,1 and older
-MacBookAir4,x and older
-MacBookPro8,x and older
-Macmini5,x and older
-MacPro5,x and older
-iMac12,x and older
+MacBook1,1    - MacBook7,1
+MacBookAir1,1 - MacBookAir4,x
+MacBookPro1,1 - MacBookPro8,x
+Macmini1,1    - Macmini5,x
+MacPro1,1     - MacPro5,1
+iMac4,1       - iMac12,x
 ```
 
 **Note**: Sidecar requires a machine with an Intel iGPU enabled and active, dGPU-only machines will not work. H.265 capable iGPU recommended for best streaming quality
