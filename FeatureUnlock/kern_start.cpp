@@ -1,6 +1,6 @@
 //
 //  kern_start.cpp
-//  SidecarFixup.kext
+//  FeatureUnlock.kext
 //
 //  Copyright © 2020 osy86, DhinakG, 2021 Mykola Grymalyuk. All rights reserved.
 //

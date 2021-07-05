@@ -1,7 +1,7 @@
-SidecarFixup
+FeatureUnlock
 ==============
 
-[![Build Status](https://github.com/acidanthera/SidecarFixup/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/SidecarFixup/actions) [![Scan Status](https://scan.coverity.com/projects/23155/badge.svg?flat=1)](https://scan.coverity.com/projects/23155)
+[![Build Status](https://github.com/acidanthera/FeatureUnlock/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/FeatureUnlock/actions) [![Scan Status](https://scan.coverity.com/projects/23155/badge.svg?flat=1)](https://scan.coverity.com/projects/23155)
 
 [Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling [Sidecar](https://support.apple.com/en-ca/HT210380), [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac), [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/) and [Universal Control](https://www.apple.com/macos/monterey-preview/) support on the following SMBIOS:
 

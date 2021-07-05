@@ -15,7 +15,7 @@
 /* Begin PBXFileReference section */
 		CEB32296265A3F4B001F646A /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
 		CEB32297265A3F4B001F646A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CEDE8CE522984C0800C73034 /* SidecarFixup.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SidecarFixup.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEDE8CE522984C0800C73034 /* FeatureUnlock.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeatureUnlock.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDE8CEC22984C0800C73034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEDE8D4D22984F7600C73034 /* kern_config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_config.hpp; sourceTree = "<group>"; };
 		CEDE8D4E22984F7600C73034 /* kern_atomic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_atomic.hpp; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 				CEB32296265A3F4B001F646A /* Changelog.md */,
 				CEB32297265A3F4B001F646A /* README.md */,
 				CEDE8D4B22984F5B00C73034 /* SDK */,
-				CEDE8CE722984C0800C73034 /* SidecarFixup */,
+				CEDE8CE722984C0800C73034 /* FeatureUnlock */,
 				CEDE8CE622984C0800C73034 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,18 +87,18 @@
 		CEDE8CE622984C0800C73034 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEDE8CE522984C0800C73034 /* SidecarFixup.kext */,
+				CEDE8CE522984C0800C73034 /* FeatureUnlock.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CEDE8CE722984C0800C73034 /* SidecarFixup */ = {
+		CEDE8CE722984C0800C73034 /* FeatureUnlock */ = {
 			isa = PBXGroup;
 			children = (
 				CEDE8CEC22984C0800C73034 /* Info.plist */,
 				CEDE8D7D2298501600C73034 /* kern_start.cpp */,
 			);
-			path = SidecarFixup;
+			path = FeatureUnlock;
 			sourceTree = "<group>";
 		};
 		CEDE8D4B22984F5B00C73034 /* SDK */ = {
@@ -204,9 +204,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CEDE8CE422984C0800C73034 /* SidecarFixup */ = {
+		CEDE8CE422984C0800C73034 /* FeatureUnlock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEDE8CEF22984C0800C73034 /* Build configuration list for PBXNativeTarget "SidecarFixup" */;
+			buildConfigurationList = CEDE8CEF22984C0800C73034 /* Build configuration list for PBXNativeTarget "FeatureUnlock" */;
 			buildPhases = (
 				CEDE8CE022984C0800C73034 /* Headers */,
 				CEDE8CE122984C0800C73034 /* Sources */,
@@ -218,9 +218,9 @@
 			);
 			dependencies = (
 			);
-			name = SidecarFixup;
-			productName = SidecarFixup;
-			productReference = CEDE8CE522984C0800C73034 /* SidecarFixup.kext */;
+			name = FeatureUnlock;
+			productName = FeatureUnlock;
+			productReference = CEDE8CE522984C0800C73034 /* FeatureUnlock.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +237,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CEDE8CDF22984C0800C73034 /* Build configuration list for PBXProject "SidecarFixup" */;
+			buildConfigurationList = CEDE8CDF22984C0800C73034 /* Build configuration list for PBXProject "FeatureUnlock" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -250,7 +250,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEDE8CE422984C0800C73034 /* SidecarFixup */,
+				CEDE8CE422984C0800C73034 /* FeatureUnlock */,
 			);
 		};
 /* End PBXProject section */
@@ -429,14 +429,14 @@
 					"PRODUCT_NAME=$(PRODUCT_NAME)",
 				);
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
-				INFOPLIST_FILE = "$(SRCROOT)/SidecarFixup/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FeatureUnlock/Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MARKETING_VERSION = "$(MODULE_VERSION)";
-				MODULE_NAME = com.Khronokernel.SidecarFixup;
+				MODULE_NAME = com.Khronokernel.FeatureUnlock;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
 				MODULE_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.SidecarFixup;
+				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.FeatureUnlock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
 			};
@@ -455,14 +455,14 @@
 					"PRODUCT_NAME=$(PRODUCT_NAME)",
 				);
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
-				INFOPLIST_FILE = "$(SRCROOT)/SidecarFixup/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FeatureUnlock/Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
 				MARKETING_VERSION = "$(MODULE_VERSION)";
-				MODULE_NAME = com.Khronokernel.SidecarFixup;
+				MODULE_NAME = com.Khronokernel.FeatureUnlock;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
 				MODULE_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.SidecarFixup;
+				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.FeatureUnlock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
 			};
@@ -471,7 +471,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CEDE8CDF22984C0800C73034 /* Build configuration list for PBXProject "SidecarFixup" */ = {
+		CEDE8CDF22984C0800C73034 /* Build configuration list for PBXProject "FeatureUnlock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEDE8CED22984C0800C73034 /* Debug */,
@@ -480,7 +480,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEDE8CEF22984C0800C73034 /* Build configuration list for PBXNativeTarget "SidecarFixup" */ = {
+		CEDE8CEF22984C0800C73034 /* Build configuration list for PBXNativeTarget "FeatureUnlock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEDE8CF022984C0800C73034 /* Debug */,
