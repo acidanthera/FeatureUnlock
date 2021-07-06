@@ -1,7 +1,7 @@
 FeatureUnlock Changelog
 ======================
 #### v1.0.3
-- Rename project from FeatureUnlock to FeatureUnlock
+- Rename project from SidecarFixup to FeatureUnlock
 
 #### v1.0.2
 - Added constants for macOS 12 support
