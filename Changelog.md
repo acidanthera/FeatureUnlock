@@ -1,5 +1,8 @@
-SidecarFixup Changelog
+FeatureUnlock Changelog
 ======================
+#### v1.0.3
+- Rename project from SidecarFixup to FeatureUnlock
+
 #### v1.0.2
 - Added constants for macOS 12 support
 - Fixed macOS 12 shared cache compatibility
