@@ -32,9 +32,15 @@ MacPro1,1     - MacPro5,1
 iMac4,1       - iMac12,x
 ```
 
-**Note**: Sidecar requires a machine with an Intel iGPU enabled and active, dGPU-only machines will not work. H.265 capable iGPU recommended for best streaming quality
+**Note**: Sidecar requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
 
-* AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. However requires macOS 12, Monterey or newer to use
+* AMD dGPU-only machines may work if using an iMac19,1 or iMac20,1 SMBIOS with the following applied:
+
+```sh
+defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
+```
+
+AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. However requires macOS 12, Monterey or newer to use
 
 #### Boot arguments
 
