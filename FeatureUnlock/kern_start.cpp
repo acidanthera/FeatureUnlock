@@ -90,7 +90,7 @@ static boolean_t patched_cs_validate_range(vnode_t vp, memory_object_t pager, me
             searchAndPatch(data, size, path, kNightShiftOriginal, kNightShiftPatched);
         } else {
             searchAndPatch(data, size, path, kNightShiftLegacyOriginal, kNightShiftLegacyPatched);
-        };
+        }
     }
     return res;
 }
