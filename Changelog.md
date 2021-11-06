@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+#### v1.0.4
+- Fixed AirPlay to Mac support with macOS 12.1
+
 #### v1.0.3
 - Rename project from SidecarFixup to FeatureUnlock
 
