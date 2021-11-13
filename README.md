@@ -54,5 +54,5 @@ AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. Howeve
 - [vit9696](https://github.com/vit9696) for [Lilu.kext](https://github.com/vit9696/Lilu)
 - [khronokernel](https://github.com/khronokernel) for developing AirPlay to Mac and Universal Control patch sets and maintaining Sidecar patch set
 - [Osy](https://github.com/Osy/Polaris22Fixup/) and [DhinakG](https://github.com/dhinakg/Polaris22Fixup/) for Polaris22Fixup base
-- [Ben-z](https://github.com/ben-z/free-sidecar) for original patch SidecarCore patch set
+- [Ben-z](https://github.com/ben-z/free-sidecar) for original SidecarCore patch set
 - [Pike R. Alpha](https://pikeralpha.wordpress.com/2017/01/30/4398/) and [cdf](https://github.com/cdf/NightShiftEnabler) for NightShift patch set

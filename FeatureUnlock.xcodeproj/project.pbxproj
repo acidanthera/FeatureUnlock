@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE9660BD273F482D00EDFBA7 /* kern_patch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = AE9660BC273F482D00EDFBA7 /* kern_patch.hpp */; };
 		CEDE8D7B22984F8F00C73034 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDE8D6E22984F7700C73034 /* libkmod.a */; };
 		CEDE8D7C22984FE600C73034 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDE8D7822984F7700C73034 /* plugin_start.cpp */; };
 		CEDE8D7E2298501600C73034 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDE8D7D2298501600C73034 /* kern_start.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE9660BC273F482D00EDFBA7 /* kern_patch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_patch.hpp; sourceTree = "<group>"; };
 		CEB32296265A3F4B001F646A /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
 		CEB32297265A3F4B001F646A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEDE8CE522984C0800C73034 /* FeatureUnlock.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeatureUnlock.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +99,7 @@
 			children = (
 				CEDE8CEC22984C0800C73034 /* Info.plist */,
 				CEDE8D7D2298501600C73034 /* kern_start.cpp */,
+				AE9660BC273F482D00EDFBA7 /* kern_patch.hpp */,
 			);
 			path = FeatureUnlock;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9660BD273F482D00EDFBA7 /* kern_patch.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
