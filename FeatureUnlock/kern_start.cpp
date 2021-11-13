@@ -9,7 +9,9 @@
 #include <Headers/kern_api.hpp>
 #include <Headers/kern_user.hpp>
 #include <Headers/kern_devinfo.hpp>
-#include "kern_patch.hpp"
+#include "kern_dyld_patch.hpp"
+#include "kern_usr_patch.hpp"
+#include "kern_args.hpp"
 
 #define MODULE_SHORT "sidecar"
 
@@ -31,23 +33,29 @@ static boolean_t patched_cs_validate_range(vnode_t vp, memory_object_t pager, me
     int pathlen = PATH_MAX;
     boolean_t res = FunctionCast(patched_cs_validate_range, orig_cs_validate)(vp, pager, offset, data, size, result);
     if (res && vn_getpath(vp, path, &pathlen) == 0 && UserPatcher::matchSharedCachePath(path)) {
-        auto deviceInfo = BaseDeviceInfo::get();
-        if (strstr(deviceInfo.modelIdentifier, "Book", strlen("Book"))) {
-            if (strstr(deviceInfo.modelIdentifier, "Pro", strlen("Pro"))) {
-                searchAndPatch(data, size, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
+        if (!disable_sidecar_mac) {
+            auto deviceInfo = BaseDeviceInfo::get();
+            if (strstr(deviceInfo.modelIdentifier, "Book", strlen("Book"))) {
+                if (strstr(deviceInfo.modelIdentifier, "Pro", strlen("Pro"))) {
+                    searchAndPatch(data, size, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
+                } else {
+                    searchAndPatch(data, size, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
+                }
+            } else if (strstr(deviceInfo.modelIdentifier, "iMac", strlen("iMac"))){
+                searchAndPatch(data, size, path, kSideCarAirPlayiMacOriginal, kSideCarAirPlayiMacPatched, "Sidecar/AirPlay/UniversalControl (iMac)");
             } else {
-                searchAndPatch(data, size, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
+                searchAndPatch(data, size, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
             }
-        } else if (strstr(deviceInfo.modelIdentifier, "iMac", strlen("iMac"))){
-            searchAndPatch(data, size, path, kSideCarAirPlayiMacOriginal, kSideCarAirPlayiMacPatched, "Sidecar/AirPlay/UniversalControl (iMac)");
-        } else {
-            searchAndPatch(data, size, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
         }
-        searchAndPatch(data, size, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
-        if ((getKernelVersion() == KernelVersion::HighSierra && getKernelMinorVersion() >= 2) || getKernelVersion() >= KernelVersion::Mojave) {
-            searchAndPatch(data, size, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
-        } else {
-            searchAndPatch(data, size, path, kNightShiftLegacyOriginal, kNightShiftLegacyPatched, "NightShift");
+        if (allow_sidecar_ipad) {
+            searchAndPatch(data, size, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
+        }
+        if (!disable_nightshift) {
+            if ((getKernelVersion() == KernelVersion::HighSierra && getKernelMinorVersion() >= 2) || getKernelVersion() >= KernelVersion::Mojave) {
+                searchAndPatch(data, size, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
+            } else {
+                searchAndPatch(data, size, path, kNightShiftLegacyOriginal, kNightShiftLegacyPatched, "NightShift");
+            }
         }
     }
     return res;
@@ -58,23 +66,39 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
     char path[PATH_MAX];
     int pathlen = PATH_MAX;
     FunctionCast(patched_cs_validate_page, orig_cs_validate)(vp, pager, page_offset, data, validated_p, tainted_p, nx_p);
-	if (vn_getpath(vp, path, &pathlen) == 0 && UserPatcher::matchSharedCachePath(path)) {
-        auto deviceInfo = BaseDeviceInfo::get();
-        if (strstr(deviceInfo.modelIdentifier, "Book", strlen("Book"))) {
-            if (strstr(deviceInfo.modelIdentifier, "Pro", strlen("Pro"))) {
-                searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
-            } else {
-                searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
+	if (vn_getpath(vp, path, &pathlen) == 0) {
+        // dyld cache patching
+        if (UserPatcher::matchSharedCachePath(path)) {
+            if (!disable_sidecar_mac) {
+                auto deviceInfo = BaseDeviceInfo::get();
+                if (strstr(deviceInfo.modelIdentifier, "Book", strlen("Book"))) {
+                    if (strstr(deviceInfo.modelIdentifier, "Pro", strlen("Pro"))) {
+                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
+                    } else {
+                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
+                    }
+                } else if (strstr(deviceInfo.modelIdentifier, "iMac", strlen("iMac"))){
+                    searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacOriginal, kSideCarAirPlayiMacPatched, "Sidecar/AirPlay/UniversalControl (iMac)");
+                } else {
+                    searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
+                }
+                if (getKernelVersion() >= KernelVersion::Monterey) {
+                    searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedOriginal, "AirPlay to Mac (Extended)");
+                }
             }
-        } else if (strstr(deviceInfo.modelIdentifier, "iMac", strlen("iMac"))){
-            searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacOriginal, kSideCarAirPlayiMacPatched, "Sidecar/AirPlay/UniversalControl (iMac)");
-        } else {
-            searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
+            if (allow_sidecar_ipad) {
+                searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
+            }
+            if (!disable_nightshift) {
+                searchAndPatch(data, PAGE_SIZE, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
+            }
         }
-        searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
-        searchAndPatch(data, PAGE_SIZE, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
-        if (getKernelVersion() >= KernelVersion::Monterey) {
-            searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedOriginal, "AirPlay to Mac (Extended)");
+        // Individual binary patching
+        // TODO: Check for presense and value of kern.hv_vmm_present before patching
+        if (allow_assetcache && UNLIKELY(strcmp(path, assetCachePath))) {
+            if (getKernelVersion() >= KernelVersion::Monterey || (getKernelVersion() == KernelVersion::BigSur && getKernelMinorVersion() >= 4)) {
+                searchAndPatch(data, PAGE_SIZE, path, kAssetCacheHypervisorOriginal, kAssetCacheHypervisorPatched, "AssetCache hv_vmm");
+            }
         }
     }
 }

@@ -1,12 +1,12 @@
 //
-//  kern_patch.hpp
+//  kern_dyld_patch.hpp
 //  FeatureUnlock
 //
 //  Created by Mykola Grymalyuk on 2021-11-10.
 //  Copyright © 2021 Khronokernel. All rights reserved.
 //
 
-// Patch set used by dyld patcher, see respective sections for patch set explanation
+// Patch sets used by dyld patcher, see respective sections for patch set explanation
 // Note the dyld patching is done recursively so all matching bytes are patched
 // When developing new patch sets, ensure that all patches applied are intentional
 
