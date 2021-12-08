@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+#### v1.0.5
+- Fixed AirPlay to Mac UDM patching regression
+
 #### v1.0.4
 - Fixed AirPlay to Mac support with macOS 12.1
 - Refactored patch sets to only patch model families

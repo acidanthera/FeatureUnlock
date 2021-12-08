@@ -83,7 +83,7 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                     searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
                 }
                 if (getKernelVersion() >= KernelVersion::Monterey) {
-                    searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedOriginal, "AirPlay to Mac (Extended)");
+                    searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedPatched, "AirPlay to Mac (Extended)");
                 }
             }
             if (allow_sidecar_ipad) {
