@@ -1,5 +1,12 @@
 FeatureUnlock Changelog
 ======================
+### v1.0.6
+- Removed AssetCache Patch
+  - Superseded by [RestrictEvents's `-revasset`](https://github.com/acidanthera/RestrictEvents)
+- Renamed MODULE_SHORT to "fu_fix"
+- Lower OS requirement to macOS Sierra
+  - NightShift introduced in 10.12.4
+
 #### v1.0.5
 - Fixed AirPlay to Mac UDM patching regression
 

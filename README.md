@@ -8,7 +8,6 @@ FeatureUnlock
 * [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac)
 * [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/)
 * [Universal Control](https://www.apple.com/macos/monterey-preview/)
-* [Content Caching](https://support.apple.com/en-ca/guide/mac-help/mchl9388ba1b/mac)
 
 ```sh
 # Sidecar and Universal Control Unlock
@@ -38,9 +37,6 @@ MacBookPro1,1 - MacBookPro8,x
 Macmini1,1    - Macmini5,x
 MacPro1,1     - MacPro5,1
 iMac4,1       - iMac12,x
-
-# Content Caching Unlock
-For systems returning 1 from 'sysctl kern.hv_vmm_present'
 ```
 
 **Note**: Sidecar requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
@@ -58,7 +54,6 @@ AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. Howeve
 - `-caroff` (or `-liluoff`) to disable
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
 - `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 12
-- `-allow_assetcache` enables Content Cache support for systems exposing `kern.hv_vmm_supported`
 - `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads (only functional with iOS 13, iOS 14+ implements an iOS-side check)
 - `-disable_sidecar_mac` disables Sidecar/AirPlay/Universal Control patches
 - `-disable_nightshift` disables NightShift patches

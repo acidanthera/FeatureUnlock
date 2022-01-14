@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AE9660BD273F482D00EDFBA7 /* kern_dyld_patch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = AE9660BC273F482D00EDFBA7 /* kern_dyld_patch.hpp */; };
-		AE9660BF2740275200EDFBA7 /* kern_usr_patch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = AE9660BE2740275200EDFBA7 /* kern_usr_patch.hpp */; };
 		AE9660C1274035C700EDFBA7 /* kern_args.hpp in Headers */ = {isa = PBXBuildFile; fileRef = AE9660C0274035C700EDFBA7 /* kern_args.hpp */; };
 		CEDE8D7B22984F8F00C73034 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDE8D6E22984F7700C73034 /* libkmod.a */; };
 		CEDE8D7C22984FE600C73034 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDE8D7822984F7700C73034 /* plugin_start.cpp */; };
@@ -17,7 +16,6 @@
 
 /* Begin PBXFileReference section */
 		AE9660BC273F482D00EDFBA7 /* kern_dyld_patch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_dyld_patch.hpp; sourceTree = "<group>"; };
-		AE9660BE2740275200EDFBA7 /* kern_usr_patch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_usr_patch.hpp; sourceTree = "<group>"; };
 		AE9660C0274035C700EDFBA7 /* kern_args.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_args.hpp; sourceTree = "<group>"; };
 		CEB32296265A3F4B001F646A /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
 		CEB32297265A3F4B001F646A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				CEDE8CEC22984C0800C73034 /* Info.plist */,
 				CEDE8D7D2298501600C73034 /* kern_start.cpp */,
 				AE9660BC273F482D00EDFBA7 /* kern_dyld_patch.hpp */,
-				AE9660BE2740275200EDFBA7 /* kern_usr_patch.hpp */,
 				AE9660C0274035C700EDFBA7 /* kern_args.hpp */,
 			);
 			path = FeatureUnlock;
@@ -207,7 +204,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE9660BF2740275200EDFBA7 /* kern_usr_patch.hpp in Headers */,
 				AE9660BD273F482D00EDFBA7 /* kern_dyld_patch.hpp in Headers */,
 				AE9660C1274035C700EDFBA7 /* kern_args.hpp in Headers */,
 			);
