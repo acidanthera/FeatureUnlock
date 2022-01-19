@@ -28,6 +28,7 @@ extern bool model_is_iMac_2015_17;
 extern bool model_is_MacBook;
 extern bool model_is_MacBookAir;
 extern bool model_is_MacBookPro;
+extern bool model_is_MacBookPro_2016_2017;
 extern bool model_is_Macmini;
 extern bool model_is_MacPro;
 

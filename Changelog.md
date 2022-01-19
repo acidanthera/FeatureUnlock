@@ -6,6 +6,7 @@ FeatureUnlock Changelog
 - Renamed MODULE_SHORT to "fu_fix"
 - Lower OS requirement to macOS Sierra
   - NightShift introduced in 10.12.4
+- Improved OS performance during patching
 
 #### v1.0.5
 - Fixed AirPlay to Mac UDM patching regression
