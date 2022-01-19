@@ -206,14 +206,14 @@ static void detectNumberOfPatches() {
             total_allowed_loops++;
             if (os_supports_airplay_to_mac) {
                 total_allowed_loops++;
+                if (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17) {
+                    total_allowed_loops++;
+                }
             }
         }
         if (allow_sidecar_ipad) {
             total_allowed_loops++;
         }
-    }
-    if (os_supports_airplay_to_mac && !disable_sidecar_mac) {
-        total_allowed_loops++;
     }
     DBGLOG(MODULE_SHORT, "Total allowed loops: %d", total_allowed_loops);
 }
