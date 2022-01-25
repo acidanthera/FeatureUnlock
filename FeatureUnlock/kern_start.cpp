@@ -49,6 +49,9 @@ static inline void searchAndPatch(const void *haystack, size_t haystackSize, con
         DBGLOG(MODULE_SHORT, "found function %s to patch at %s!", name, path);
         number_of_loops++;
         DBGLOG(MODULE_SHORT, "number of loops: %d", number_of_loops);
+        if (number_of_loops == total_allowed_loops) {
+            DBGLOG(MODULE_SHORT, "Reached maximum loops (%d), no more patching", total_allowed_loops);
+        }
     }
 }
 
@@ -59,8 +62,8 @@ static boolean_t patched_cs_validate_range(vnode_t vp, memory_object_t pager, me
     char path[PATH_MAX];
     int pathlen = PATH_MAX;
     boolean_t res = FunctionCast(patched_cs_validate_range, orig_cs_validate)(vp, pager, offset, data, size, result);
-    if (res && vn_getpath(vp, path, &pathlen) == 0 && UserPatcher::matchSharedCachePath(path)) {
-        if (number_of_loops < total_allowed_loops) {
+    if (number_of_loops < total_allowed_loops) {
+        if (res && vn_getpath(vp, path, &pathlen) == 0 && UserPatcher::matchSharedCachePath(path)) {
             if (!disable_sidecar_mac && os_supports_sidecar) {
                 if (model_is_MacBookPro) {
                     searchAndPatch(data, size, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar (MacBookPro)");
@@ -92,40 +95,38 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
     char path[PATH_MAX];
     int pathlen = PATH_MAX;
     FunctionCast(patched_cs_validate_page, orig_cs_validate)(vp, pager, page_offset, data, validated_p, tainted_p, nx_p);
-	if (vn_getpath(vp, path, &pathlen) == 0) {
+    // We check the number of times we've patched to limit wasted loops
+    // Because AirPlay/Sidecar patches are long in length, repetitively calling the function is expensive
+    // Since we know how many times these strings will appear in the dyld, we can effectively avoid extra checks
+    // This resolves issues of system stability when a system is slower/low on memory as well as improve battery life
+	if (number_of_loops < total_allowed_loops) {
         // dyld cache patching
-        if (UserPatcher::matchSharedCachePath(path)) {
-            if (number_of_loops < total_allowed_loops) {
-                // We check the number of times we've patched to limit wasted loops
-                // Because AirPlay/Sidecar patches are long in length, repetitively calling the function is expensive
-                // Since we know how many times these strings will appear in the dyld, we can effectively avoid extra checks
-                // This resolves issues of system stability when a system is slower/low on memory as well as improve battery life
-                if (!disable_sidecar_mac && os_supports_sidecar) {
-                    if (model_is_MacBookPro) {
-                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
-                    } else if (model_is_MacBookAir || model_is_MacBook) {
-                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
-                    } else if (model_is_iMac) {
-                        if (model_is_iMac_2012) {
-                            searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2012Original, kSideCarAirPlayiMacAlternative2012Patched, "Sidecar/AirPlay/UniversalControl (iMac 2012)");
-                        } else if (model_is_iMac_2013) {
-                            searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2013Original, kSideCarAirPlayiMacAlternative2013Patched, "Sidecar/AirPlay/UniversalControl (iMac 2013)");
-                        } else if (model_is_iMac_2014) {
-                            searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2014Original, kSideCarAirPlayiMacAlternative2014Patched, "Sidecar/AirPlay/UniversalControl (iMac 2014)");
-                        }
-                    } else if (model_is_Macmini || model_is_MacPro) {
-                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
+        if (vn_getpath(vp, path, &pathlen) == 0 && UserPatcher::matchSharedCachePath(path)) {
+            if (!disable_sidecar_mac && os_supports_sidecar) {
+                if (model_is_MacBookPro) {
+                    searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookProOriginal, kSideCarAirPlayMacBookProPatched, "Sidecar/AirPlay/UniversalControl (MacBookPro)");
+                } else if (model_is_MacBookAir || model_is_MacBook) {
+                    searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayMacBookOriginal, kSideCarAirPlayMacBookPatched, "Sidecar/AirPlay/UniversalControl (MacBook/MacBookAir)");
+                } else if (model_is_iMac) {
+                    if (model_is_iMac_2012) {
+                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2012Original, kSideCarAirPlayiMacAlternative2012Patched, "Sidecar/AirPlay/UniversalControl (iMac 2012)");
+                    } else if (model_is_iMac_2013) {
+                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2013Original, kSideCarAirPlayiMacAlternative2013Patched, "Sidecar/AirPlay/UniversalControl (iMac 2013)");
+                    } else if (model_is_iMac_2014) {
+                        searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayiMacAlternative2014Original, kSideCarAirPlayiMacAlternative2014Patched, "Sidecar/AirPlay/UniversalControl (iMac 2014)");
                     }
-                    if (os_supports_airplay_to_mac && (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17)) {
-                        searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedPatched, "AirPlay to Mac (Extended)");
-                    }
+                } else if (model_is_Macmini || model_is_MacPro) {
+                    searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay/UniversalControl (Macmini/MacPro)");
                 }
-                if (allow_sidecar_ipad && os_supports_sidecar) {
-                    searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
+                if (os_supports_airplay_to_mac && (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17)) {
+                    searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedPatched, "AirPlay to Mac (Extended)");
                 }
-                if (!disable_nightshift && (os_supports_nightshift_new || os_supports_nightshift_old)) {
-                    searchAndPatch(data, PAGE_SIZE, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
-                }
+            }
+            if (allow_sidecar_ipad && os_supports_sidecar) {
+                searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar/UniversalControl (iPad)");
+            }
+            if (!disable_nightshift && (os_supports_nightshift_new || os_supports_nightshift_old)) {
+                searchAndPatch(data, PAGE_SIZE, path, kNightShiftOriginal, kNightShiftPatched, "NightShift");
             }
         }
     }
