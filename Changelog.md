@@ -4,9 +4,12 @@ FeatureUnlock Changelog
 - Removed AssetCache Patch
   - Superseded by [RestrictEvents's `-revasset`](https://github.com/acidanthera/RestrictEvents)
 - Renamed MODULE_SHORT to "fu_fix"
-- Lower OS requirement to macOS Sierra
+- Lowered OS requirement to macOS Sierra
   - NightShift introduced in 10.12.4
 - Improved OS performance during patching
+- Added Universal Control unlocking for unsupported Macs
+  - Re-introduced by Apple with macOS 12.3
+  - iPadOS has iPad specific blacklists, patching is ineffective
 
 #### v1.0.5
 - Fixed AirPlay to Mac UDM patching regression

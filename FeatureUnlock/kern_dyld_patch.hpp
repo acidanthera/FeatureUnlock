@@ -11,7 +11,7 @@
 // When developing new patch sets, ensure that all patches applied are intentional
 
 #include <stdint.h>
-#pragma mark - Sidecar/AirPlay/UniversalControl Patch Set
+#pragma mark - Sidecar/AirPlay Patch Set
 
 // SidecarCore/AirPlaySupport share 1 large array of unsupported models.
 // Namely models that do not support H.265 support:
@@ -26,19 +26,6 @@
 //    iPad4,1 iPad4,2 iPad4,3 iPad4,4 iPad4,5 iPad4,6 iPad4,7 iPad4,8 iPad4,9
 //    iPad5,1 iPad5,2 iPad5,3 iPad5,4 iPad6,11 iPad6,12
 
-// UniversalControl has an identical array however mixes the iPad models in the middle of the Mac models.
-// Since we patch model families individually, we're granted UniversalControl support without extra patching.
-
-//    iMac13,1 iMac13,2 iMac13,3 iMac14,1 iMac14,2 iMac14,3 iMac14,4 iMac15,1 iMac16,1 iMac16,2
-//    iPad4,1 iPad4,2 iPad4,3 iPad4,4 iPad4,5 iPad4,6 iPad4,7 iPad4,8 iPad4,9
-//    iPad5,1 iPad5,2 iPad5,3 iPad5,4 iPad6,11 iPad6,12
-//    MacBook8,1
-//    MacBookAir5,1 MacBookAir5,2 MacBookAir6,1 MacBookAir6,2 MacBookAir7,1 MacBookAir7,2
-//    MacBookPro9,1 MacBookPro9,2 MacBookPro10,1 MacBookPro10,2
-//    MacBookPro11,1 MacBookPro11,2 MacBookPro11,3 MacBookPro11,4 MacBookPro11,5 MacBookPro12,1
-//    Macmini6,1 Macmini6,2 Macmini7,1
-//    MacPro5,1 MacPro6,1
-
 // In addition to this, AirPlaySupport has an extra array for excluding models that do not support a 'Unified Driver Model (UDM)'
 // AirPlaySupport "requires" all models to have UART-based Wifi, however no issues have been found on legacy devices.
 
@@ -52,7 +39,9 @@
 //    MacBookPro14,1 MacBookPro14,2 MacBookPro14,3
 //    MacMini8,1
 
-// Note Macmini is mistyped as MacMini, so unsure whether the blacklist sucessfully applies to said model. Macmini8,1 is a UDM-based Device
+// Note Macmini is mistyped as MacMini, so unsure whether the blacklist sucessfully applies to said model.
+// Macmini8,1 is a UDM-based Device, however it exempt from support ("Mac mini (2020 and later)"):
+// https://www.apple.com/macos/monterey/features/
 
 static const uint8_t kSideCarAirPlayiMacOriginal[] = {
     // iMac13,1 iMac13,2 iMac13,3 iMac14,1 iMac14,2 iMac14,3 iMac14,4 iMac15,1 iMac16,1 iMac16,2

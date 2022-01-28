@@ -10,7 +10,7 @@ FeatureUnlock
 * [Universal Control](https://www.apple.com/macos/monterey-preview/)
 
 ```sh
-# Sidecar and Universal Control Unlock
+# Sidecar Unlock
 MacBook8,1
 MacBookAir5,x - MacBookAir7,x
 MacBookPro9,x - MacBookPro12,x
@@ -37,17 +37,32 @@ MacBookPro1,1 - MacBookPro8,x
 Macmini1,1    - Macmini5,x
 MacPro1,1     - MacPro5,1
 iMac4,1       - iMac12,x
+
+# Universal Control Unlock
+MacBookAir7,x
+MacBookPro11,4 - MacBookPro12,1
+Macmini7,1
+MacPro6,1
+iMac16,x
 ```
 
-**Note**: Sidecar requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
+#### Additional Notes
 
-* AMD dGPU-only machines may work if using an iMac19,x or iMac20,x SMBIOS with the following applied:
+* **NightShift** (macOS 10.12.4+)
 
+* **AirPlay to Mac** (macOS 12.0+)
+
+* **Univeral Control** (macOS 12.3+)
+  * Requires Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
+
+* **Sidecar** (macOS 10.15.0+)
+  * Requires Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
+  * Requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
+  * AMD dGPU-only machines may work if using an iMac19,x or iMac20,x SMBIOS with `gvaForceAMDKE` setting applied:
+ 
 ```sh
 defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 ```
-
-AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. However requires macOS 12, Monterey or newer to use
 
 #### Boot arguments
 
@@ -55,8 +70,9 @@ AirPlay to Mac does not have such limitation and can work on H.264 dGPUs. Howeve
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
 - `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 12
 - `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads (only functional with iOS 13, iOS 14+ implements an iOS-side check)
-- `-disable_sidecar_mac` disables Sidecar/AirPlay/Universal Control patches
+- `-disable_sidecar_mac` disables Sidecar/AirPlay patches
 - `-disable_nightshift` disables NightShift patches
+- `-disable_uni_control` disables Universal Control patches
 
 #### Credits
 
