@@ -53,10 +53,10 @@ iMac16,x
 * **AirPlay to Mac** (macOS 12.0+)
 
 * **Univeral Control** (macOS 12.3+)
-  * Requires Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
+  * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
 
 * **Sidecar** (macOS 10.15.0+)
-  * Requires Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
+  * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
   * Requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
   * AMD dGPU-only machines may work if using an iMac19,x or iMac20,x SMBIOS with `gvaForceAMDKE` setting applied:
  
