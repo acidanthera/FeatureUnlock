@@ -20,6 +20,7 @@ bool allow_sidecar_ipad;
 bool disable_sidecar_mac;
 bool disable_nightshift;
 bool disable_universal_control;
+bool force_universal_control;
 
 bool os_supports_nightshift_old;
 bool os_supports_nightshift_new;
@@ -133,14 +134,15 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                 if (!disable_nightshift && (os_supports_nightshift_new || os_supports_nightshift_old)) {
                     searchAndPatch(data, PAGE_SIZE, path, kNightShiftOriginal, kNightShiftPatched, "NightShift", true);
                 }
-                if (!disable_universal_control && os_supports_universal_control && model_needs_uc_patch) {
+                if (!disable_universal_control && os_supports_universal_control && (model_needs_uc_patch or force_universal_control)) {
                     searchAndPatch(data, PAGE_SIZE, path, kUniversalControlFind, kUniversalControlReplace, "Universal Control (dyld)", true);
                 }
             }
         }
-        if (!disable_universal_control && os_supports_universal_control && model_needs_uc_patch) {
+        if (!disable_universal_control && os_supports_universal_control && (model_needs_uc_patch or force_universal_control)) {
+            // UniversalControl.app checks both the host and other devices before pairing
+            // Thus we patch when either the model is unsupported, or the user has requested UC support for other models 
             if (UNLIKELY(strcmp(path, universalControlPath) == 0)) {
-                DBGLOG(MODULE_SHORT, "Detected Universal Control (app)");
                 searchAndPatch(data, PAGE_SIZE, path, kUniversalControlFind, kUniversalControlReplace, "Universal Control (app)", false);
             }
         }
@@ -269,6 +271,7 @@ static void pluginStart() {
     disable_sidecar_mac = checkKernelArgument("-disable_sidecar_mac");
     disable_nightshift = checkKernelArgument("-disable_nightshift");
     disable_universal_control = checkKernelArgument("-disable_uni_control");
+    force_universal_control = checkKernelArgument("-force_uni_control");
     detectModel();
     detectSupportedPatchSets();
     detectNumberOfPatches();

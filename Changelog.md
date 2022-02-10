@@ -1,5 +1,9 @@
 FeatureUnlock Changelog
 ======================
+### v1.0.7
+- Add force patching for Universal Control via `-force_uni_control`
+  - Required for when a device in the chain is unsupported, as all parties perform support checks before pairing
+
 ### v1.0.6
 - Removed AssetCache Patch
   - Superseded by [RestrictEvents's `-revasset`](https://github.com/acidanthera/RestrictEvents)

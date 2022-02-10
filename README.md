@@ -54,6 +54,10 @@ iMac16,x
 
 * **Univeral Control** (macOS 12.3+)
   * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
+  * Note all parties check each other for compatibility, thus requiring FeatureUnlock on all models in the chain
+    * Seen as `Ineligible Device Found Md MacBookPro11,4, SV 340.17.2` in Console under `UniversalControl: com.apple.universalcontrol`
+    * Recommend using a different SMBIOS if possible, otherwise use `-force_uc_unlock` for machines that are not blacklisted but are connecting with a blacklisted model.
+    * Due to the nature of requiring FeatureUnlock for both models, Apple Silicon and iPads will not work
 
 * **Sidecar** (macOS 10.15.0+)
   * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
@@ -73,6 +77,7 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 - `-disable_sidecar_mac` disables Sidecar/AirPlay patches
 - `-disable_nightshift` disables NightShift patches
 - `-disable_uni_control` disables Universal Control patches
+- `-force_uni_control` forces Universal Control patching even when model doesn't require
 
 #### Credits
 
