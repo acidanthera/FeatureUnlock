@@ -38,6 +38,7 @@ bool model_is_MacBookAir;
 bool model_is_MacBookPro;
 bool model_is_MacBookPro_2016_2017;
 bool model_is_Macmini;
+bool model_is_Macmini_2018;
 bool model_is_MacPro;
 bool model_needs_uc_patch;
 
@@ -124,7 +125,7 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                     } else if (model_is_Macmini || model_is_MacPro) {
                         searchAndPatch(data, PAGE_SIZE, path, kSideCarAirPlayStandaloneDesktopOriginal, kSideCarAirPlayStandaloneDesktopPatched, "Sidecar/AirPlay (Macmini/MacPro)", true);
                     }
-                    if (os_supports_airplay_to_mac && (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17)) {
+                    if (os_supports_airplay_to_mac && (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17 || model_is_Macmini_2018)) {
                         searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedPatched, "AirPlay to Mac (Extended)", true);
                     }
                 }
@@ -202,6 +203,8 @@ static void detectModel() {
             if (strncmp(deviceInfo.modelIdentifier, "Macmini7,1", sizeof("Macmini7,1")-1) == 0) {
                 DBGLOG(MODULE_SHORT, "Detected Macmini7,1");
                 model_needs_uc_patch = true;
+            } else if (strncmp(deviceInfo.modelIdentifier, "Macmini8,1", sizeof("Macmini8,1")-1) == 0) {
+                model_is_Macmini_2018 = true;
             }
         } else if (strstr(deviceInfo.modelIdentifier, "MacPro", sizeof("MacPro")-1)) {
             DBGLOG(MODULE_SHORT, "Detected MacPro");
@@ -248,7 +251,7 @@ static void detectNumberOfPatches() {
             total_allowed_loops++;
             if (os_supports_airplay_to_mac) {
                 total_allowed_loops++;
-                if (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17) {
+                if (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17 || model_is_Macmini_2018) {
                     total_allowed_loops++;
                 }
                 if (!disable_universal_control && os_supports_universal_control && model_needs_uc_patch) {

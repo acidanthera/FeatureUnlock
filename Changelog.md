@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.0.8
+- Add AirPlay to Mac patching for Macmini8,1
+
 ### v1.0.7
 - Add force patching for Universal Control via `-force_uni_control`
   - Required for when a device in the chain is unsupported, as all parties perform support checks before pairing
