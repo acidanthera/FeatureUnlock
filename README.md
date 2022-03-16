@@ -52,7 +52,7 @@ iMac16,x
 
 * **AirPlay to Mac** (macOS 12.0+)
 
-* **Univeral Control** (macOS 12.3+)
+* **Universal Control** (macOS 12.3+)
   * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
   * Note all parties check each other for compatibility, thus requiring FeatureUnlock on all models in the chain
     * Seen as `Ineligible Device Found Md MacBookPro11,4, SV 340.17.2` in Console under `UniversalControl: com.apple.universalcontrol`
