@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.0.9
+- Added constants for macOS 13 support
+
 ### v1.0.8
 - Add AirPlay to Mac patching for Macmini8,1
 
