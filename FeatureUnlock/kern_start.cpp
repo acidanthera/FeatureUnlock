@@ -26,6 +26,7 @@ bool os_supports_nightshift_old;
 bool os_supports_nightshift_new;
 bool os_supports_sidecar;
 bool os_supports_airplay_to_mac;
+bool os_supports_airplay_to_mac_vmm_checks;
 bool os_supports_universal_control;
 
 bool model_is_iMac;
@@ -127,6 +128,9 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                     }
                     if (os_supports_airplay_to_mac && (model_is_MacBookPro_2016_2017 || model_is_iMac_2015_17 || model_is_Macmini_2018)) {
                         searchAndPatch(data, PAGE_SIZE, path, kMacModelAirplayExtendedOriginal, kMacModelAirplayExtendedPatched, "AirPlay to Mac (Extended)", true);
+                    }
+                    if (os_supports_airplay_to_mac_vmm_checks) {
+                        searchAndPatch(data, PAGE_SIZE, path, kAirPlayVmmOriginal, kAirPlayVmmPatched, "AirPlay to Mac (VMM)", true);
                     }
                 }
                 if (allow_sidecar_ipad && os_supports_sidecar) {
@@ -239,6 +243,10 @@ static void detectSupportedPatchSets() {
             os_supports_universal_control = true;
         }
     }
+    if (getKernelVersion() >= KernelVersion::Ventura) {
+        // Apple added kern.hv_vmm_present checks in Ventura, in addition to their normal model checks...
+        os_supports_airplay_to_mac_vmm_checks = true;
+    }
 }
 
 static void detectNumberOfPatches() {
@@ -255,6 +263,9 @@ static void detectNumberOfPatches() {
                     total_allowed_loops++;
                 }
                 if (!disable_universal_control && os_supports_universal_control && model_needs_uc_patch) {
+                    total_allowed_loops++;
+                }
+                if (os_supports_airplay_to_mac_vmm_checks) {
                     total_allowed_loops++;
                 }
             }

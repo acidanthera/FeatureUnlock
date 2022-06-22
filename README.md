@@ -29,6 +29,7 @@ MacBookPro9,x - MacBookPro14,x
 Macmini6,x    - Macmini8,1
 MacPro5,1     - MacPro6,1
 iMac13,x      - iMac18,x
+Systems with 'kern.hv_vmm_present' set to as 1 (Ventura and newer)
 
 # NightShift Unlock
 MacBook1,1    - MacBook7,1
