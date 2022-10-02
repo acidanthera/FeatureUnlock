@@ -18,7 +18,7 @@ Macmini6,x    - Macmini7,1
 MacPro5,1     - MacPro6,1
 iMac13,x      - iMac16,x
 
-# Sidecar (running iOS 13)
+# Sidecar
 iPad4,x       - iPad5,x
 iPad6,11      - iPad6,12
 
@@ -74,7 +74,7 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 - `-caroff` (or `-liluoff`) to disable
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
 - `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 13
-- `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads (only functional with iOS 13, iOS 14+ implements an iOS-side check)
+- `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads
 - `-disable_sidecar_mac` disables Sidecar/AirPlay patches
 - `-disable_nightshift` disables NightShift patches
 - `-disable_uni_control` disables Universal Control patches
