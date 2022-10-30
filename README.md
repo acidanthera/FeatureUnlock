@@ -64,7 +64,7 @@ iMac16,x
   * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
   * Requires a machine with an Intel iGPU active for reliable usage, most dGPU-only machines will experience difficulties. An H.265 capable iGPU is recommended for best streaming quality.
   * AMD dGPU-only machines may work if using an iMac19,x or iMac20,x SMBIOS with `gvaForceAMDKE` setting applied:
- 
+
 ```sh
 defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 ```
@@ -75,14 +75,13 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
 - `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 13
 - `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads
-- `-disable_sidecar_mac` disables Sidecar/AirPlay patches
+- `-disable_sidecar_mac` disables Sidecar/AirPlay/Universal Control patches
 - `-disable_nightshift` disables NightShift patches
-- `-disable_uni_control` disables Universal Control patches
 - `-force_uni_control` forces Universal Control patching even when model doesn't require
 
 #### Credits
 
-- [Apple](https://www.apple.com) for macOS  
+- [Apple](https://www.apple.com) for macOS
 - [vit9696](https://github.com/vit9696) for [Lilu.kext](https://github.com/vit9696/Lilu)
 - [khronokernel](https://github.com/khronokernel) for developing AirPlay to Mac and Universal Control patch sets and maintaining Sidecar patch set
 - [Osy](https://github.com/Osy/Polaris22Fixup/) and [DhinakG](https://github.com/dhinakg/Polaris22Fixup/) for Polaris22Fixup base

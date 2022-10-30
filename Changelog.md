@@ -1,5 +1,12 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.0
+- Refactored model patch set detection
+  - Implemented proper VMM detection for AirPlay to Mac on Ventura
+  - Avoids unnessary patching on supported models (ex. NightShift on 2012+)
+- Removed unused `-disable_uni_control` boot argument
+  - Was non-functional previously, use `-disable_sidecar_mac` instead
+
 ### v1.0.9
 - Added constants for macOS 13 support
 - Added AirPlay to Mac unlocking for systems with `kern.hv_vmm_present` set to `1` in Ventura
