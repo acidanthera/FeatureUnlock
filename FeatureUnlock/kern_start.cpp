@@ -83,6 +83,11 @@ bool has_applied_uc_app_patch;
 int number_of_loops = 0;
 int total_allowed_loops = 0;
 
+uint64_t start_time;
+uint64_t current_time;
+
+bool time_to_exit = false;
+
 #pragma mark - Kernel patching code
 
 template <size_t findSize, size_t replaceSize>
@@ -96,6 +101,19 @@ static inline bool searchAndPatch(const void *haystack, size_t haystackSize, con
                 DBGLOG(MODULE_SHORT, "Reached maximum loops (%d), no more dyld patching", total_allowed_loops);
             }
         }
+        return true;
+    }
+    return false;
+}
+
+static inline bool check_time_elapsed() {
+    current_time = mach_absolute_time();
+    uint64_t elapsed_time = current_time - start_time;
+    uint64_t elapsed_time_ms = elapsed_time / 1000000;
+    // Check if 5 minutes have elapsed
+    if (elapsed_time_ms > 300000) {
+        DBGLOG(MODULE_SHORT, "Time elapsed since start: %llu ms, exiting", elapsed_time_ms);
+        time_to_exit = true;
         return true;
     }
     return false;
@@ -182,6 +200,17 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
         if (UserPatcher::matchSharedCachePath(path)) {
             // If we've already patched everything we can, exit early
             if (number_of_loops >= total_allowed_loops) {
+                return;
+            }
+
+            /*
+            Check if too much time has passed since start
+            We know the dyld patching should finish within 5 minutes, otherwise our patches
+            are likely between pages and will never apply (ie. wasted loops)
+            */
+            if (time_to_exit) {
+                return;
+            } else if (check_time_elapsed()) {
                 return;
             }
 
@@ -637,6 +666,7 @@ static void detectBootArgs() {
 
 static void pluginStart() {
 	DBGLOG(MODULE_SHORT, "start");
+    start_time = mach_absolute_time();
     detectBootArgs();
     detectMachineProperties();
     detectSupportedPatchSets();
