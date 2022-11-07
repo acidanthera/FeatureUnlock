@@ -665,20 +665,20 @@ static void detectBootArgs() {
 #pragma mark - Patches on start/stop
 
 static void pluginStart() {
-	DBGLOG(MODULE_SHORT, "start");
+    DBGLOG(MODULE_SHORT, "start");
     start_time = mach_absolute_time();
     detectBootArgs();
     detectMachineProperties();
     detectSupportedPatchSets();
     detectNumberOfPatches();
-	lilu.onPatcherLoadForce([](void *user, KernelPatcher &patcher) {
-		KernelPatcher::RouteRequest csRoute =
-			getKernelVersion() >= KernelVersion::BigSur ?
-			KernelPatcher::RouteRequest("_cs_validate_page", patched_cs_validate_page, orig_cs_validate) :
-			KernelPatcher::RouteRequest("_cs_validate_range", patched_cs_validate_range, orig_cs_validate);
-		if (!patcher.routeMultipleLong(KernelPatcher::KernelID, &csRoute, 1))
-			SYSLOG(MODULE_SHORT, "failed to route cs validation pages");
-	});
+    lilu.onPatcherLoadForce([](void *user, KernelPatcher &patcher) {
+        KernelPatcher::RouteRequest csRoute =
+            getKernelVersion() >= KernelVersion::BigSur ?
+            KernelPatcher::RouteRequest("_cs_validate_page", patched_cs_validate_page, orig_cs_validate) :
+            KernelPatcher::RouteRequest("_cs_validate_range", patched_cs_validate_range, orig_cs_validate);
+        if (!patcher.routeMultipleLong(KernelPatcher::KernelID, &csRoute, 1))
+            SYSLOG(MODULE_SHORT, "failed to route cs validation pages");
+    });
 }
 
 // Boot args.
