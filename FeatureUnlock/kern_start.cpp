@@ -462,6 +462,13 @@ static void detectMachineProperties() {
                 return;
             }
         }
+        for (int i = 0; i < sizeof(macmini_2018_models) / sizeof(macmini_2018_models[0]); i++) {
+            if (strncmp(deviceInfo.modelIdentifier, macmini_2018_models[i], strlen(macmini_2018_models[i])) == 0) {
+                model_is_Macmini_2018 = true;
+                DBGLOG(MODULE_SHORT, "Detected Mac mini 2018 model");
+                return;
+            }
+        }
 
     } else if (strstr(deviceInfo.modelIdentifier, "Pro", sizeof("Pro")-1)) {
         // Mac Pro

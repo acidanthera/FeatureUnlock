@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.1
+- Resolved Macmini8,1 patch regression from 1.1.0
+
 ### v1.1.0
 - Refactored model patch set detection
   - Implemented proper VMM detection for AirPlay to Mac on Ventura

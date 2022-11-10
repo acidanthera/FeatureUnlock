@@ -135,4 +135,6 @@ static char *macmini_2014_models[] = {
     (char *)"Macmini7,1"
 };
 
-
+static char *macmini_2018_models[] = {
+    (char *)"Macmini8,1"
+};
