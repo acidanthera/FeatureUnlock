@@ -350,42 +350,42 @@ static void detectMachineProperties() {
     if (strstr(deviceInfo.modelIdentifier, "Book", sizeof("Book")-1)) {
         if (strstr(deviceInfo.modelIdentifier, "Pro", sizeof("Pro")-1)) {
             // MacBook Pro
-            for (int i = 0; i < sizeof(macbookpro_legacy_models) / sizeof(macbookpro_legacy_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_legacy_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_legacy_models[i], strlen(macbookpro_legacy_models[i])) == 0) {
                     model_is_MacBookPro_pre_2012 = true;
                     DBGLOG(MODULE_SHORT, "Detected legacy MacBookPro model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookpro_2012_models) / sizeof(macbookpro_2012_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_2012_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_2012_models[i], strlen(macbookpro_2012_models[i])) == 0) {
                     model_is_MacBookPro_2012 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookPro 2012 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookpro_2013_models) / sizeof(macbookpro_2013_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_2013_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_2013_models[i], strlen(macbookpro_2013_models[i])) == 0) {
                     model_is_MacBookPro_2013 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookPro 2013 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookpro_2015_models) / sizeof(macbookpro_2015_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_2015_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_2015_models[i], strlen(macbookpro_2015_models[i])) == 0) {
                     model_is_MacBookPro_2015 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookPro 2015 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookpro_2016_models) / sizeof(macbookpro_2016_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_2016_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_2016_models[i], strlen(macbookpro_2016_models[i])) == 0) {
                     model_is_MacBookPro_2016 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookPro 2016 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookpro_2017_models) / sizeof(macbookpro_2017_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookpro_2017_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookpro_2017_models[i], strlen(macbookpro_2017_models[i])) == 0) {
                     model_is_MacBookPro_2017 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookPro 2017 model");
@@ -394,28 +394,28 @@ static void detectMachineProperties() {
             }
         // MacBook Air
         } else if (strstr(deviceInfo.modelIdentifier, "Air", sizeof("Air")-1)) {
-            for (int i = 0; i < sizeof(macbookair_legacy_models) / sizeof(macbookair_legacy_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookair_legacy_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookair_legacy_models[i], strlen(macbookair_legacy_models[i])) == 0) {
                     model_is_MacBookAir_pre_2012 = true;
                     DBGLOG(MODULE_SHORT, "Detected legacy MacBookAir model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookair_2012_models) / sizeof(macbookair_2012_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookair_2012_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookair_2012_models[i], strlen(macbookair_2012_models[i])) == 0) {
                     model_is_MacBookAir_2012 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookAir 2012 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookair_2013_models) / sizeof(macbookair_2013_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookair_2013_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookair_2013_models[i], strlen(macbookair_2013_models[i])) == 0) {
                     model_is_MacBookAir_2013 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookAir 2013 model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbookair_2015_models) / sizeof(macbookair_2015_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbookair_2015_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbookair_2015_models[i], strlen(macbookair_2015_models[i])) == 0) {
                     model_is_MacBookAir_2015 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBookAir 2015 model");
@@ -424,14 +424,14 @@ static void detectMachineProperties() {
             }
         } else {
             // MacBook
-            for (int i = 0; i < sizeof(macbook_legacy_models) / sizeof(macbook_legacy_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbook_legacy_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbook_legacy_models[i], strlen(macbook_legacy_models[i])) == 0) {
                     model_is_MacBook_pre_2015 = true;
                     DBGLOG(MODULE_SHORT, "Detected legacy MacBook model");
                     return;
                 }
             }
-            for (int i = 0; i < sizeof(macbook_modern_models) / sizeof(macbook_modern_models[0]); i++) {
+            for (size_t i = 0; i < arrsize(macbook_modern_models); i++) {
                 if (strncmp(deviceInfo.modelIdentifier, macbook_modern_models[i], strlen(macbook_modern_models[i])) == 0) {
                     model_is_MacBook_2015 = true;
                     DBGLOG(MODULE_SHORT, "Detected MacBook 2015 model");
@@ -441,28 +441,28 @@ static void detectMachineProperties() {
         }
     } else if (strstr(deviceInfo.modelIdentifier, "mini", sizeof("mini")-1)) {
         // Mac mini
-        for (int i = 0; i < sizeof(macmini_legacy_models) / sizeof(macmini_legacy_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macmini_legacy_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macmini_legacy_models[i], strlen(macmini_legacy_models[i])) == 0) {
                 model_is_Macmini_pre_2012 = true;
                 DBGLOG(MODULE_SHORT, "Detected legacy Mac mini model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(macmini_2012_models) / sizeof(macmini_2012_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macmini_2012_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macmini_2012_models[i], strlen(macmini_2012_models[i])) == 0) {
                 model_is_Macmini_2012 = true;
                 DBGLOG(MODULE_SHORT, "Detected Mac mini 2012 model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(macmini_2014_models) / sizeof(macmini_2014_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macmini_2014_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macmini_2014_models[i], strlen(macmini_2014_models[i])) == 0) {
                 model_is_Macmini_2014 = true;
                 DBGLOG(MODULE_SHORT, "Detected Mac mini 2014 model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(macmini_2018_models) / sizeof(macmini_2018_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macmini_2018_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macmini_2018_models[i], strlen(macmini_2018_models[i])) == 0) {
                 model_is_Macmini_2018 = true;
                 DBGLOG(MODULE_SHORT, "Detected Mac mini 2018 model");
@@ -472,11 +472,11 @@ static void detectMachineProperties() {
 
     } else if (strstr(deviceInfo.modelIdentifier, "Pro", sizeof("Pro")-1)) {
         // Mac Pro
-        for (int i = 0; i < sizeof(macpro_legacy_models) / sizeof(macpro_legacy_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macpro_legacy_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macpro_legacy_models[i], strlen(macpro_legacy_models[i])) == 0) {
                 model_is_MacPro_pre_2013 = true;
                 DBGLOG(MODULE_SHORT, "Detected legacy Mac Pro model");
-                for (int i = 0; i < sizeof(macpro_2010_2012_models) / sizeof(macpro_2010_2012_models[0]); i++) {
+                for (size_t i = 0; i < arrsize(macpro_2010_2012_models); i++) {
                     if (strncmp(deviceInfo.modelIdentifier, macpro_2010_2012_models[i], strlen(macpro_2010_2012_models[i])) == 0) {
                         model_is_MacPro_2010_2012 = true;
                         DBGLOG(MODULE_SHORT, "Detected Mac Pro 2010-2012 model");
@@ -486,7 +486,7 @@ static void detectMachineProperties() {
                 return;
             }
         }
-        for (int i = 0; i < sizeof(macpro_2013_models) / sizeof(macpro_2013_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(macpro_2013_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, macpro_2013_models[i], strlen(macpro_2013_models[i])) == 0) {
                 model_is_MacPro_2013 = true;
                 DBGLOG(MODULE_SHORT, "Detected Mac Pro 2013 model");
@@ -495,42 +495,42 @@ static void detectMachineProperties() {
         }
     } else if (strstr(deviceInfo.modelIdentifier, "iMac", sizeof("iMac")-1)) {
         // iMac
-        for (int i = 0; i < sizeof(imac_legacy_models) / sizeof(imac_legacy_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_legacy_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_legacy_models[i], strlen(imac_legacy_models[i])) == 0) {
                 model_is_iMac_pre_2012 = true;
                 DBGLOG(MODULE_SHORT, "Detected legacy iMac model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(imac_2012_models) / sizeof(imac_2012_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_2012_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_2012_models[i], strlen(imac_2012_models[i])) == 0) {
                 model_is_iMac_2012 = true;
                 DBGLOG(MODULE_SHORT, "Detected iMac 2012 model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(imac_2013_models) / sizeof(imac_2013_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_2013_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_2013_models[i], strlen(imac_2013_models[i])) == 0) {
                 model_is_iMac_2013 = true;
                 DBGLOG(MODULE_SHORT, "Detected iMac 2013 model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(imac_2014_models) / sizeof(imac_2014_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_2014_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_2014_models[i], strlen(imac_2014_models[i])) == 0) {
                 model_is_iMac_2014 = true;
                 DBGLOG(MODULE_SHORT, "Detected iMac 2014 model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(imac_2015_broadwell_models) / sizeof(imac_2015_broadwell_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_2015_broadwell_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_2015_broadwell_models[i], strlen(imac_2015_broadwell_models[i])) == 0) {
                 model_is_iMac_2015_broadwell = true;
                 DBGLOG(MODULE_SHORT, "Detected iMac 2015 Broadwell model");
                 return;
             }
         }
-        for (int i = 0; i < sizeof(imac_2015_2017_models) / sizeof(imac_2015_2017_models[0]); i++) {
+        for (size_t i = 0; i < arrsize(imac_2015_2017_models); i++) {
             if (strncmp(deviceInfo.modelIdentifier, imac_2015_2017_models[i], strlen(imac_2015_2017_models[i])) == 0) {
                 model_is_iMac_2015_2017 = true;
                 DBGLOG(MODULE_SHORT, "Detected iMac 2015-2017 model");
