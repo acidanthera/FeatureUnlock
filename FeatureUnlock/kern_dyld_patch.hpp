@@ -435,11 +435,20 @@ static const uint8_t kNightShiftPatched[] = {
 #pragma mark - Verify Patch Size
 
 // Patching the dyld requires that both the find and replace are of same length
-static_assert(sizeof(kSideCarAirPlayMacBookOriginal) == sizeof(kSideCarAirPlayMacBookPatched), "patch size invalid");
-static_assert(sizeof(kSideCarAirPlayMacBookProOriginal) == sizeof(kSideCarAirPlayMacBookProPatched), "patch size invalid");
 static_assert(sizeof(kSideCarAirPlayiMacOriginal) == sizeof(kSideCarAirPlayiMacPatched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayiMacAlternative2012Original) == sizeof(kSideCarAirPlayiMacAlternative2012Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayiMacAlternative2013Original) == sizeof(kSideCarAirPlayiMacAlternative2013Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayiMacAlternative2014Original) == sizeof(kSideCarAirPlayiMacAlternative2014Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookOriginal) == sizeof(kSideCarAirPlayMacBookPatched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookMacBookAir2012Original) == sizeof(kSideCarAirPlayMacBooMacBookAir2012Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookAir2013_2015Original) == sizeof(kSideCarAirPlayMacBookAir2013_2015Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookProOriginal) == sizeof(kSideCarAirPlayMacBookProPatched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookPro2012Original) == sizeof(kSideCarAirPlayMacBookPro2012Patched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacBookPro2013_2015Original) == sizeof(kSideCarAirPlayMacBookPro2013_2015Patched), "patch size invalid");
 static_assert(sizeof(kSideCarAirPlayStandaloneDesktopOriginal) == sizeof(kSideCarAirPlayStandaloneDesktopPatched), "patch size invalid");
-static_assert(sizeof(kMacModelAirplayExtendedOriginal) == sizeof(kMacModelAirplayExtendedPatched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacProOriginal) == sizeof(kSideCarAirPlayMacProPatched), "patch size invalid");
+static_assert(sizeof(kSideCarAirPlayMacminiOriginal) == sizeof(kSideCarAirPlayMacminiPatched), "patch size invalid");
 static_assert(sizeof(kSidecariPadModelOriginal) == sizeof(kSidecariPadModelPatched), "patch size invalid");
-static_assert(sizeof(kNightShiftLegacyOriginal) == sizeof(kNightShiftLegacyPatched), "patch size invalid");
+static_assert(sizeof(kMacModelAirplayExtendedOriginal) == sizeof(kMacModelAirplayExtendedPatched), "patch size invalid");
+static_assert(sizeof(kAirPlayVmmOriginal) == sizeof(kAirPlayVmmPatched), "patch size invalid");
 static_assert(sizeof(kNightShiftOriginal) == sizeof(kNightShiftPatched), "patch size invalid");

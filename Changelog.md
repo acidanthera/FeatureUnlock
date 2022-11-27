@@ -2,6 +2,8 @@ FeatureUnlock Changelog
 ======================
 ### v1.1.1
 - Resolved Macmini8,1 patch regression from 1.1.0
+- Resolved iPad Sidecar patch regression from 1.1.0
+  - Applicable if host model did not require Sidecar patch
 
 ### v1.1.0
 - Refactored model patch set detection

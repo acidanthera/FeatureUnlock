@@ -298,18 +298,17 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                             }
                         }
                     }
-
-                    // Sidecar iPad check
-                    if (allow_sidecar_ipad && !has_applied_iPad_sidecar_patch) {
-                        patch_result = searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar (iPad)", true);
-                        if (patch_result) {
-                            has_applied_iPad_sidecar_patch = true;
-                        }
-                    }
-
+                }
+                // Sidecar iPad check
+                if (allow_sidecar_ipad && !has_applied_iPad_sidecar_patch) {
+                    patch_result = searchAndPatch(data, PAGE_SIZE, path, kSidecariPadModelOriginal, kSidecariPadModelPatched, "Sidecar (iPad)", true);
                     if (patch_result) {
-                        return;
+                        has_applied_iPad_sidecar_patch = true;
                     }
+                }
+
+                if (patch_result) {
+                    return;
                 }
             }
         }
@@ -586,6 +585,11 @@ static void detectSupportedPatchSets() {
         }
     }
     if (!disable_sidecar_mac && (os_supports_sidecar || os_supports_airplay_to_mac || os_supports_universal_control)) {
+        // Sidecar (iPad specific)
+        if (allow_sidecar_ipad) {
+            DBGLOG(MODULE_SHORT, "Model requested Sidecar iPad patch");
+        }
+
         // Sidecar and AirPlay to Mac
         if (// Ivy Bridge to Broadwell (including MacPro5,1)
             model_is_iMac_2012 || model_is_iMac_2013 || model_is_iMac_2014 || model_is_iMac_2015_broadwell || \
