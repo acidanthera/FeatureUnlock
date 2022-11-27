@@ -4,10 +4,10 @@ FeatureUnlock
 [![Build Status](https://github.com/acidanthera/FeatureUnlock/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/FeatureUnlock/actions) [![Scan Status](https://scan.coverity.com/projects/23354/badge.svg?flat=1)](https://scan.coverity.com/projects/23354)
 
 [Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling:
-* [Sidecar](https://support.apple.com/en-ca/HT210380)
+* [Sidecar](https://support.apple.com/HT210380)
 * [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac)
-* [AirPlay to Mac](https://www.apple.com/macos/monterey-preview/)
-* [Universal Control](https://www.apple.com/macos/monterey-preview/)
+* [AirPlay to Mac](https://www.apple.com/airplay/) or additional info [here](https://support.apple.com/HT204289)
+* [Universal Control](https://support.apple.com/HT212757)
 
 ```sh
 # Sidecar Unlock
