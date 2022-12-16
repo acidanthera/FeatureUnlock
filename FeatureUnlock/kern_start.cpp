@@ -77,6 +77,7 @@ bool has_applied_nightshift_patch;
 bool has_applied_airplay_to_mac_vmm_patch;
 bool has_applied_iPad_sidecar_patch;
 bool has_applied_uc_app_patch;
+bool has_applied_cc_app_patch;
 
 
 // Misc variables
@@ -320,6 +321,15 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                     patch_result = searchAndPatch(data, PAGE_SIZE, path, kUniversalControlFind, kUniversalControlReplace, "Universal Control (app)", false);
                     if (patch_result) {
                         has_applied_uc_app_patch = true;
+                        return;
+                    }
+                }
+            }
+            if (!has_applied_cc_app_patch && host_needs_airplay_to_mac_vmm_patch) {
+                if (UNLIKELY(strcmp(path, controlCenterPath) == 0)) {
+                    patch_result = searchAndPatch(data, PAGE_SIZE, path, kGenericVmmOriginal, kGenericVmmPatched, "Control Center (app)", false);
+                    if (patch_result) {
+                        has_applied_cc_app_patch = true;
                         return;
                     }
                 }

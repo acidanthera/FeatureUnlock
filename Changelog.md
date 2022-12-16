@@ -1,5 +1,9 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.2
+- Add AirPlay to Mac unlocking inside Control Center.app
+  - Applicable for macOS Ventura
+
 ### v1.1.1
 - Resolved Macmini8,1 patch regression from 1.1.0
 - Resolved iPad Sidecar patch regression from 1.1.0
