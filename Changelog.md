@@ -1,8 +1,8 @@
 FeatureUnlock Changelog
 ======================
 ### v1.1.2
-- Add AirPlay to Mac unlocking inside Control Center.app
-  - Applicable for macOS Ventura
+- Added AirPlay to Mac unlocking inside Control Center.app
+  - Applicable for systems with `kern.hv_vmm_present` set to `1` in macOS Ventura 
 
 ### v1.1.1
 - Resolved Macmini8,1 patch regression from 1.1.0
