@@ -325,7 +325,7 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                     }
                 }
             }
-            if (!has_applied_cc_app_patch && host_needs_airplay_to_mac_vmm_patch) {
+            if (!disable_sidecar_mac && !has_applied_cc_app_patch && host_needs_airplay_to_mac_vmm_patch) {
                 if (UNLIKELY(strcmp(path, controlCenterPath) == 0)) {
                     patch_result = searchAndPatch(data, PAGE_SIZE, path, kGenericVmmOriginal, kGenericVmmPatched, "Control Center (app)", false);
                     if (patch_result) {
