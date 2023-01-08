@@ -1,8 +1,12 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.3
+- Allow binaries to be patched upon re-paging
+  - Resolves patches disappearing for small binaries after prolonged period (ex. Control Center.app)
+
 ### v1.1.2
 - Added AirPlay to Mac unlocking inside Control Center.app
-  - Applicable for systems with `kern.hv_vmm_present` set to `1` in macOS Ventura 
+  - Applicable for systems with `kern.hv_vmm_present` set to `1` in macOS Ventura
 
 ### v1.1.1
 - Resolved Macmini8,1 patch regression from 1.1.0
