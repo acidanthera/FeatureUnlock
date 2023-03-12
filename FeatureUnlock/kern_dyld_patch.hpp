@@ -432,6 +432,46 @@ static const uint8_t kNightShiftPatched[] = {
     0x01, 0x00, 0x00, 0x00
 };
 
+// AVConference.framework
+// Removes arbitrary CPUID check for HEVC support for Continuity Camera
+// Common _cpuFamily bytes:
+// - 13.2 Beta 1: 48 8B 05 19 C9 85 32
+// - 13.2.1:      48 8B 05 99 0B 87 32
+// - 13.3 Beta 2: 48 8B 05 A1 E1 44 32
+static const uint8_t kContinuityCameraOriginal[] = {
+    0x55,                                      // push       rbp
+    0x48, 0x89, 0xE5,                          // mov        rbp, rsp
+    0x48, 0x8B, 0x05, 0x00, 0x00, 0x00, 0x32,  // mov        rax, qword [_cpuFamily] (masked)
+    0x8B, 0x0C, 0x07,                          // mov        ecx, dword [rdi+rax]
+    0x31, 0xC0,                                // xor        eax, eax
+    0x81, 0xF9, 0x8B, 0xB7, 0x90, 0x54,        // cmp        ecx, 0x5490b78b
+    0x7E, 0x22                                 // jle        loc_7ff910bfd11e
+};
+
+static const uint8_t kContinuityCameraPatched[] = {
+    0xB8, 0x01, 0x00, 0x00, 0x00,                         // mov       eax 1
+    0xC3,                                                 // ret
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (padding)
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+static const uint8_t kContinuityCameraOriginalMask[] = {
+    0xFF,
+    0xFF, 0xFF, 0xFF,
+    0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0xFF,
+    0xFF, 0xFF, 0xFF,
+    0xFF, 0xFF,
+    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+    0xFF, 0xFF
+};
+
+static const uint8_t kContinuityCameraPatchedMask[] = {
+    0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+    0xFF,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
 #pragma mark - Verify Patch Size
 
 // Patching the dyld requires that both the find and replace are of same length
@@ -452,3 +492,6 @@ static_assert(sizeof(kSidecariPadModelOriginal) == sizeof(kSidecariPadModelPatch
 static_assert(sizeof(kMacModelAirplayExtendedOriginal) == sizeof(kMacModelAirplayExtendedPatched), "patch size invalid");
 static_assert(sizeof(kAirPlayVmmOriginal) == sizeof(kAirPlayVmmPatched), "patch size invalid");
 static_assert(sizeof(kNightShiftOriginal) == sizeof(kNightShiftPatched), "patch size invalid");
+static_assert(sizeof(kContinuityCameraOriginal) == sizeof(kContinuityCameraPatched), "patch size invalid");
+static_assert(sizeof(kContinuityCameraOriginal) == sizeof(kContinuityCameraOriginalMask), "mask size invalid");
+static_assert(sizeof(kContinuityCameraPatched) == sizeof(kContinuityCameraPatchedMask), "mask size invalid");

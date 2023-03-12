@@ -39,6 +39,7 @@ bool host_needs_sidecar_patch;
 bool host_needs_airplay_to_mac_patch;
 bool host_needs_airplay_to_mac_vmm_patch;
 bool host_needs_universal_control_patch;
+bool host_needs_continuity_patch;
 int  host_needs_vmm_patch;
 
 // Model family detected
@@ -76,6 +77,7 @@ bool model_is_MacPro_2013;          // MacPro6,x
 bool has_applied_nightshift_patch;
 bool has_applied_airplay_to_mac_vmm_patch;
 bool has_applied_iPad_sidecar_patch;
+bool has_applied_continuity_patch;
 
 
 // Misc variables
@@ -88,6 +90,22 @@ uint64_t current_time;
 bool time_to_exit = false;
 
 #pragma mark - Kernel patching code
+
+template <size_t findSize, size_t findMaskSize, size_t replaceSize, size_t replaceMaskSize>
+static inline bool searchAndPatchWithMask(const void *haystack, size_t haystackSize, const char *path, const uint8_t (&needle)[findSize], const uint8_t (&findMask)[findMaskSize], const uint8_t (&patch)[replaceSize], const uint8_t (&patchMask)[replaceMaskSize], const char *name, bool is_dyld) {
+    if (KernelPatcher::findAndReplaceWithMask(const_cast<void *>(haystack), haystackSize, needle, findSize, findMask, findMaskSize, patch, replaceSize, patchMask, replaceMaskSize, 0, 0)) {
+        DBGLOG(MODULE_SHORT, "found function %s to patch at %s!", name, path);
+        if (is_dyld) {
+            number_of_loops++;
+            DBGLOG(MODULE_SHORT, "number of loops: %d", number_of_loops);
+            if (number_of_loops == total_allowed_loops) {
+                DBGLOG(MODULE_SHORT, "Reached maximum loops (%d), no more dyld patching", total_allowed_loops);
+            }
+        }
+        return true;
+    }
+    return false;
+}
 
 template <size_t findSize, size_t replaceSize>
 static inline bool searchAndPatch(const void *haystack, size_t haystackSize, const char *path, const uint8_t (&needle)[findSize], const uint8_t (&patch)[replaceSize], const char *name, bool is_dyld) {
@@ -211,6 +229,15 @@ static void patched_cs_validate_page(vnode_t vp, memory_object_t pager, memory_o
                 return;
             } else if (check_time_elapsed()) {
                 return;
+            }
+            
+            // Continuity Camera patch
+            if (!has_applied_continuity_patch && host_needs_continuity_patch) {
+                patch_result = searchAndPatchWithMask(data, PAGE_SIZE, path, kContinuityCameraOriginal, kContinuityCameraOriginalMask, kContinuityCameraPatched, kContinuityCameraPatchedMask, "Continuity Camera", true);
+                if (patch_result) {
+                    has_applied_continuity_patch = true;
+                    return;
+                }
             }
 
             // Night Shift patch
@@ -632,6 +659,12 @@ static void detectSupportedPatchSets() {
             DBGLOG(MODULE_SHORT, "Model requested Universal Control patch");
             host_needs_universal_control_patch = true;
         }
+        
+        // Continuity Camera
+        if (getKernelVersion() >= KernelVersion::Ventura && BaseDeviceInfo::get().cpuGeneration < CPUInfo::CpuGeneration::KabyLake) {
+            DBGLOG(MODULE_SHORT, "Model requires Continuity Camera patch");
+            host_needs_continuity_patch = true;
+        }
     }
 
 }
@@ -666,6 +699,9 @@ static void detectNumberOfPatches() {
         if (allow_sidecar_ipad) {
             total_allowed_loops++;
         }
+    }
+    if (host_needs_continuity_patch) {
+        total_allowed_loops++;
     }
     DBGLOG(MODULE_SHORT, "Total allowed loops: %d", total_allowed_loops);
 }

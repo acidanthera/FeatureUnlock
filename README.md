@@ -8,6 +8,7 @@ FeatureUnlock
 * [NightShift](https://support.apple.com/guide/mac-help/use-night-shift-mchl97bc676d/mac)
 * [AirPlay to Mac](https://www.apple.com/airplay/) or additional info [here](https://support.apple.com/HT204289)
 * [Universal Control](https://support.apple.com/HT212757)
+* [Continuity Camera](https://support.apple.com/lv-lv/guide/mac-help/mchl77879b8a/mac)
 
 ```sh
 # Sidecar Unlock
@@ -45,6 +46,9 @@ MacBookPro11,4 - MacBookPro12,1
 Macmini7,1
 MacPro6,1
 iMac16,x
+
+# Continuity Camera
+Systems with pre-Kaby Lake CPUIDs
 ```
 
 #### Additional Notes
@@ -52,6 +56,8 @@ iMac16,x
 * **NightShift** (macOS 10.12.4+)
 
 * **AirPlay to Mac** (macOS 12.0+)
+
+* **Continuity Camera** (macOS 13.0+)
 
 * **Universal Control** (macOS 12.3+)
   * Requires minimum of Wifi N and Bluetooth 4.0 for wireless, wired is supported between iPad and Mac as an alternative
@@ -87,3 +93,4 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 - [Osy](https://github.com/Osy/Polaris22Fixup/) and [DhinakG](https://github.com/dhinakg/Polaris22Fixup/) for Polaris22Fixup base
 - [Ben-z](https://github.com/ben-z/free-sidecar) for original SidecarCore patch set
 - [Pike R. Alpha](https://pikeralpha.wordpress.com/2017/01/30/4398/) and [cdf](https://github.com/cdf/NightShiftEnabler) for NightShift patch set
+- [EduCovas](https://github.com/educovas) for original Continuity Camera patch discovery 

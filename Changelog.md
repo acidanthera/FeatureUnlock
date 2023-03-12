@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.4
+- Added Continuity Camera unlocking for pre-Kaby Lake CPUIDs
+
 ### v1.1.3
 - Allow binaries to be patched upon re-paging
   - Resolves patches disappearing for small binaries after prolonged period (ex. Control Center.app)
