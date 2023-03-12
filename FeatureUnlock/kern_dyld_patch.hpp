@@ -432,7 +432,7 @@ static const uint8_t kNightShiftPatched[] = {
     0x01, 0x00, 0x00, 0x00
 };
 
-// AVConference.framework
+// AVConference.framework [VCHardwareSettingsMac canDoHEVC]
 // Removes arbitrary CPUID check for HEVC support for Continuity Camera
 // Common _cpuFamily bytes:
 // - 13.2 Beta 1: 48 8B 05 19 C9 85 32
