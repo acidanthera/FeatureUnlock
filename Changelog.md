@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.5
+- Added constants for macOS 14 support
+
 ### v1.1.4
 - Added Continuity Camera unlocking for pre-Kaby Lake CPUIDs
 
