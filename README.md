@@ -79,7 +79,7 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 
 - `-caroff` (or `-liluoff`) to disable
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
-- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 13
+- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 14
 - `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads
 - `-disable_sidecar_mac` disables Sidecar/AirPlay/Universal Control patches
 - `-disable_nightshift` disables NightShift patches
