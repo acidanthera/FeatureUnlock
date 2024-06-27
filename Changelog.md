@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.6
+- Added constants for macOS 15 support
+
 ### v1.1.5
 - Added constants for macOS 14 support
 
