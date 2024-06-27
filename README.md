@@ -79,7 +79,7 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 
 - `-caroff` (or `-liluoff`) to disable
 - `-cardbg` (or `-liludbgall`) to enable verbose logging (in DEBUG builds)
-- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 14
+- `-carbeta` (or `-lilubetaall`) to enable on macOS newer than 15
 - `-allow_sidecar_ipad` enables Sidecar support for unsupported iPads
 - `-disable_sidecar_mac` disables Sidecar/AirPlay/Universal Control patches
 - `-disable_nightshift` disables NightShift patches
@@ -93,4 +93,4 @@ defaults write com.apple.AppleGVA gvaForceAMDKE -boolean yes
 - [Osy](https://github.com/Osy/Polaris22Fixup/) and [DhinakG](https://github.com/dhinakg/Polaris22Fixup/) for Polaris22Fixup base
 - [Ben-z](https://github.com/ben-z/free-sidecar) for original SidecarCore patch set
 - [Pike R. Alpha](https://pikeralpha.wordpress.com/2017/01/30/4398/) and [cdf](https://github.com/cdf/NightShiftEnabler) for NightShift patch set
-- [EduCovas](https://github.com/educovas) for original Continuity Camera patch discovery 
+- [EduCovas](https://github.com/educovas) for original Continuity Camera patch discovery
