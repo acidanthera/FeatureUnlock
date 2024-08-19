@@ -447,7 +447,7 @@
 				MODULE_NAME = com.Khronokernel.FeatureUnlock;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.6;
+				MODULE_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.FeatureUnlock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
@@ -473,7 +473,7 @@
 				MODULE_NAME = com.Khronokernel.FeatureUnlock;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.6;
+				MODULE_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.khronokernel.FeatureUnlock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = kext;
