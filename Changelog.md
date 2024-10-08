@@ -1,5 +1,8 @@
 FeatureUnlock Changelog
 ======================
+### v1.1.7
+- Fixed loading on macOS 10.10 and older due to a MacKernelSDK regression
+
 ### v1.1.6
 - Added constants for macOS 15 support
 
