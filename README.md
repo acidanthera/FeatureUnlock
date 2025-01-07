@@ -1,7 +1,7 @@
 FeatureUnlock
 ==============
 
-[![Build Status](https://github.com/acidanthera/FeatureUnlock/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/FeatureUnlock/actions) [![Scan Status](https://scan.coverity.com/projects/23354/badge.svg?flat=1)](https://scan.coverity.com/projects/23354)
+[![Build Status](https://github.com/acidanthera/FeatureUnlock/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/acidanthera/FeatureUnlock/actions) [![Scan Status](https://scan.coverity.com/projects/23354/badge.svg?flat=1)](https://scan.coverity.com/projects/23354)
 
 [Lilu](https://github.com/acidanthera/Lilu) Kernel extension for enabling:
 * [Sidecar](https://support.apple.com/HT210380)
