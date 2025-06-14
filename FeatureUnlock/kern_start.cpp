@@ -757,6 +757,6 @@ PluginConfiguration ADDPR(config) {
     bootargBeta,
     arrsize(bootargBeta),
     KernelVersion::Sierra,
-    KernelVersion::Sequoia,
+    KernelVersion::Tahoe,
     pluginStart
 };
