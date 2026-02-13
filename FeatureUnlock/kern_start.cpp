@@ -8,6 +8,7 @@
 #include <Headers/plugin_start.hpp>
 #include <Headers/kern_api.hpp>
 #include <Headers/kern_user.hpp>
+#include "kern_uc_model.hpp"
 #include <Headers/kern_devinfo.hpp>
 #include <sys/sysctl.h>
 #include "kern_dyld_patch.hpp"
@@ -18,6 +19,8 @@
 
 // Original function pointers
 static mach_vm_address_t orig_cs_validate {};
+static UCModelSpoof ucModelSpoof;
+
 
 // Boot-arg configurations
 bool allow_sidecar_ipad;
@@ -724,6 +727,13 @@ static void pluginStart() {
     detectMachineProperties();
     detectSupportedPatchSets();
     detectNumberOfPatches();
+    
+    // Initialize Universal Control model spoofing for blacklisted models
+    if (UCModelSpoof::isBlacklistedModel()) {
+        DBGLOG(MODULE_SHORT, "Initializing UC model spoofing for blacklisted Mac");
+        ucModelSpoof.init();
+    }
+    
     lilu.onPatcherLoadForce([](void *user, KernelPatcher &patcher) {
         KernelPatcher::RouteRequest csRoute =
             getKernelVersion() >= KernelVersion::BigSur ?
@@ -731,6 +741,9 @@ static void pluginStart() {
             KernelPatcher::RouteRequest("_cs_validate_range", patched_cs_validate_range, orig_cs_validate);
         if (!patcher.routeMultipleLong(KernelPatcher::KernelID, &csRoute, 1))
             SYSLOG(MODULE_SHORT, "failed to route cs validation pages");
+        if (UCModelSpoof::isBlacklistedModel()) {
+            ucModelSpoof.processKernelPatches(patcher);
+        }
     });
 }
 
